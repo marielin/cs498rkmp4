@@ -1,0 +1,137 @@
+<head>
+  <title>Task Manager</title>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<a href="/users" class="{{isActiveRoute regex='users'}}">Users</a>
+			<a href="/tasks" class="{{isActiveRoute regex='tasks'}}">Tasks</a>
+		</nav>
+	</header>
+
+	<main>
+
+	</main>
+</body>
+
+<template name="users"><div class="users-template">
+	<ul class="users">
+		{{#each users}}
+			{{> user}}
+		{{/each}}
+	</ul>
+	<button class="add-user-button">Add User</button>
+	<p>––––––</p>
+	{{> addUser}}
+</div></template>
+
+<template name="user"><div class="user-template">
+	<li class="user">
+		<button class="delete-user"><i class="fa fa-trash"></i></button>
+		<a href="/users/{{_id}}">{{name}}</a>
+	</li>
+</div></template>
+
+<template name="userDetail"><div class="userDetail-template">
+	<ul class="user-detail">
+		<li>Name: {{name}}</li>
+		<li>Email: {{email}}</li>
+		<li>Pending Tasks:
+			<ul class="pending-tasks">
+				{{#each userPendingTasks}}
+					{{> pendingTask}}
+				{{/each}}
+			</ul>
+		</li>
+	</ul>
+</div></template>
+
+<template name="pendingTask"><div class="pendingTask-template">
+	<li class="pendingTask">
+		<form class="complete-task">
+			{{name}} <input type="checkbox" class="toggle-completed" name="completed" value="completed">
+		</form>
+	</li>
+</div></template>
+
+<template name="addUser"><div class="addUser-template">
+	<form class="add-user">
+		Name: <input type="text" name="name"><br>
+		Email: <input type="text" name="email"><br>
+		<input type="submit" class="submit-user">
+	</form>
+</div></template>
+
+<template name="tasks"><div class="tasks-template">
+	<form class="tasks-filter">
+		<input type="radio" name="tasksFilter" value="pending" checked>Pending
+		<input type="radio" name="tasksFilter" value="completed">Completed
+		<input type="radio" name="tasksFilter" value="all">All
+	</form>
+
+	<form class="tasks-order">
+		<input type="radio" name="tasksOrder" value="1" checked>Ascending
+		<input type="radio" name="tasksOrder" value="-1">Descending
+	</form>
+
+	<select class="tasks-sort">
+		<option value="dateCreated">Date Created</option>
+		<option value="deadline">Deadline</option>
+		<option value="assignedUserName">Username</option>
+		<option value="name">Name</option>
+	</select>
+	<br>
+	<button class="new-task">Add New Task</button>
+
+	<ul class="tasks">
+		{{#each tasks}}
+			{{> task}}
+		{{/each}}
+	</ul>
+	<button class="tasks-prev">Previous</button>
+	<button class="tasks-next">Next</button>
+
+	<p>––––––</p>
+
+	{{> addTask}}
+</div></template>
+
+<template name="task"><div class="task-template">
+	<li class="task">
+		<button class="delete-task"><i class="fa fa-trash"></i></button>
+		<span><a href="/tasks/{{_id}}">{{name}}</a> - {{assignedUserName}}</span>
+		{{#if completed}}<i class="task-checkmark fa fa-check"></i>{{/if}}
+	</li>
+</div></template>
+
+<template name="taskDetail"><div class="taskDetail-template">
+	<ul class="task-detail">
+		<li>Name: {{name}}</li>
+		<li>Description: {{description}}</li>
+		<li>Assigned User: {{assignedUserName}}</li>
+		<li>Deadline: {{deadline}}</li>
+		<li>
+			Completed: <input type="checkbox" class="toggle-completed" checked="{{completed}}" />
+		</li>
+	</ul>
+</div></template>
+
+<template name="addTask"><div class="addTask-template">
+	<form class="add-task">
+		Name: <input type="text" name="name"><br>
+		Description: <input type="text" name="description"><br>
+		Deadline: {{> datePicker}}
+		Owner:
+		<select name="owner" class="owner-select">
+			{{#each users}}
+				<option value="{{_id}}">{{name}}</option>
+			{{/each}}
+		</select><br>
+		<input type="submit" class="submit-task">
+	</form>
+</div></template>
+
+<template name="datePicker"><div class="datePicker-template">
+	<input type="text" name="deadline" id="my-datepicker">
+</div></template>

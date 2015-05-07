@@ -1,0 +1,140 @@
+@import url('http://fonts.googleapis.com/css?family=Lato:300,400,600');
+@import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+primary-font = "Lato", "Helvetica Neue", sans-serif
+primary-color = #C9201C
+primary-color-light = lighten(primary-color, 60%)
+delete-button-color = #CCCCCC
+delete-button-bg-color = #EEEEEE
+delete-button-hover-bg-color = primary-color
+delete-button-border-color = lighten(primary-color, 60%)
+add-user-button-bg-color = #A6D653
+add-user-button-hover-bg-color = #8BC327
+add-user-button-shadow-color = darken(add-user-button-hover-bg-color, 40%)
+tasks-page-button-bg-color = #AAAAAA
+tasks-page-button-hover-bg-color = #888888
+tasks-page-button-shadow-color = darken(tasks-page-button-hover-bg-color, 40%)
+
+
+header-height = 60px
+
+header
+	nav
+		position: absolute
+		top: 0px
+		left: 0px
+		width: 100%
+		height: header-height
+		padding-left: 20px
+		padding-right: 20px
+		background-color: primary-color
+
+		a
+			display: inline-block
+			padding-left: 10px
+			padding-right: 10px
+			color: primary-color-light
+			font: 400 1.5rem primary-font
+			text-decoration: none
+			line-height: header-height
+
+		a:hover
+			color: lighten(primary-color, 80%)
+
+		.active
+			color: white !important
+
+main
+	margin-top: header-height
+	height: 5px;
+
+.users-template, .tasks-template
+	margin-left: 20px
+	margin-right: 20px
+
+.users-template
+	.users
+		padding-left: 0
+		list-style-type: none
+
+		.user
+			a
+				padding-left: 4px
+				font: 400 1rem primary-font
+				text-decoration: none
+
+			a:hover
+				text-decoration: underline
+
+			.delete-user
+				border: none
+				border-radius: 4px
+				color: delete-button-color
+				background-color: delete-button-bg-color
+				cursor:pointer
+
+			.delete-user:hover
+				color: white
+				background-color: delete-button-hover-bg-color
+
+	.add-user-button
+		font: 400 1rem primary-font
+		margin-top: 0px
+		padding: 6px 10px 6px 10px
+		border: none
+		border-bottom: 3px solid add-user-button-shadow-color
+		border-radius: 4px
+		color: white
+		background-color: add-user-button-bg-color
+		cursor:pointer
+
+	.add-user-button:hover
+		margin-top: 1px
+		border-bottom: 2px solid add-user-button-shadow-color
+		background-color: add-user-button-hover-bg-color
+
+	.add-user-button:active
+		margin-top: 3px
+		border-bottom: 0px solid add-user-button-shadow-color
+
+.tasks-template
+	.tasks
+		padding-left: 0
+		list-style-type: none
+
+		.task
+			span
+				font: 400 1rem primary-font
+
+			a
+				padding-left: 4px
+				text-decoration: none
+
+			a:hover
+				text-decoration: underline
+
+			.delete-task
+				border: none
+				border-radius: 4px
+				color: delete-button-color
+				background-color: delete-button-bg-color
+				cursor:pointer
+
+			.delete-task:hover
+				color: white
+				background-color: delete-button-hover-bg-color
+
+			.task-checkmark
+				color: #8BC327
+
+	.tasks-prev, .tasks-next
+		font: 400 1rem primary-font
+		padding: 6px 10px 6px 10px
+		border: none
+		border-radius: 4px
+		color: white
+		background-color: tasks-page-button-bg-color
+		cursor:pointer
+
+	.tasks-prev:hover, .tasks-next:hover
+		background-color: tasks-page-button-hover-bg-color
